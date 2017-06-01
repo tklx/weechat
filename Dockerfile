@@ -12,5 +12,6 @@ RUN set -x \
     && apt-get -y install ncurses-base weechat weechat-plugins \
     && apt-clean --aggressive
 
-ENTRYPOINT ["/tini", "--"]
-CMD ["/bin/bash"]
+COPY entrypoint /entrypoint
+ENTRYPOINT ["/tini", "--", "/entrypoint"]
+CMD ["weechat"]

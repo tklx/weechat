@@ -1,0 +1,11 @@
+#!/bin/bash -e
+
+if [ "${1:0:1}" = "-" ]; then
+    set -- weechat "$@"
+fi
+
+if [ "$1" = "weechat" ]; then
+    exec "$@"
+fi
+
+exec "$@"
