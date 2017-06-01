@@ -12,6 +12,10 @@ RUN set -x \
     && apt-get -y install ncurses-base weechat weechat-plugins \
     && apt-clean --aggressive
 
+RUN adduser --disabled-login --gecos '' user
+USER user
+WORKDIR /home/user
+
 COPY entrypoint /entrypoint
 ENTRYPOINT ["/tini", "--", "/entrypoint"]
 CMD ["weechat"]
