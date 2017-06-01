@@ -7,5 +7,10 @@ RUN set -x \
     && echo -n "${TINI_HASH}  /tini" | sha256sum --strict --check - \
     && chmod +x /tini
 
+RUN set -x \
+    && apt-get update \
+    && apt-get -y install ncurses-base weechat weechat-plugins \
+    && apt-clean --aggressive
+
 ENTRYPOINT ["/tini", "--"]
 CMD ["/bin/bash"]
