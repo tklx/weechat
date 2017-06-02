@@ -10,6 +10,7 @@
 - Uses [tini][tini] for zombie reaping and signal forwarding.
 - Includes weechat and weechat-plugins.
 - Includes ``USER user`` to restrict the privileges of weechat.
+- Includes ``EXPOSE 9001`` for optional relay configuration.
 
 ## Usage
 
@@ -52,6 +53,26 @@ docker run --rm -it tklx/weechat --help
 docker run --rm -it -u root tklx/weechat /bin/bash
 ```
 
+### Relay configuration / glowing bear (web UI)
+
+Security notice:
+
+    - This sets up a non-encrypted relay.
+    - Access to the relay provides OS [execution privilages][relay-exec]!
+    - Use only for testing, and only on localhost.
+
+```
+# configure the relay and password
+/relay add weechat 9001
+/set relay.network.password secretrelaypassword
+
+# get the container's IP address
+$ docker ps
+$ docker inspect -f '{{.NetworkSettings.IPAddress}}' CONTAINER-ID
+
+# browse to http://glowing-bear.org and connect
+```
+
 ## Automated builds
 
 The [Docker image](https://hub.docker.com/r/tklx/weechat/) is built, and pushed by [CircleCI](https://circleci.com/gh/tklx/weechat) from source hosted on [GitHub](https://github.com/tklx/weechat).
@@ -68,5 +89,6 @@ tracking of bugs, issues and feature requests.
 [weechat]: https://weechat.org
 [base]: https://github.com/tklx/base
 [tini]: https://github.com/krallin/tini
+[relay-exec]: https://github.com/weechat/weechat/issues/928
 [tracker]: https://github.com/tklx/tracker/issues
 
