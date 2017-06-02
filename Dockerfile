@@ -16,6 +16,7 @@ RUN adduser --disabled-login --gecos '' user
 USER user
 WORKDIR /home/user
 
+EXPOSE 9001
 COPY entrypoint /entrypoint
 ENTRYPOINT ["/tini", "--", "/entrypoint"]
 CMD ["weechat"]
