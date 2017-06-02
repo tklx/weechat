@@ -57,9 +57,9 @@ docker run --rm -it -u root tklx/weechat /bin/bash
 
 Security notice:
 
-    - This sets up a non-encrypted relay.
-    - Access to the relay provides OS [execution privilages][relay-exec]!
-    - Use only for testing, and only on localhost.
+* This sets up a non-encrypted relay.
+* Access to the relay provides OS [execution privileges][relay-exec]!
+* Use only for testing, and only on localhost.
 
 ```
 # configure the relay and password
