@@ -1,3 +1,12 @@
+## 0.1.1
+
+Expose 9001 for relay support
+
+#### Notes
+
+- Includes ``EXPOSE 9001`` for optional relay configuration.
+- Updated README to include setup configuration and security notice.
+
 ## 0.1.0
 
 Initial development release.
