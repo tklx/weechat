@@ -8,6 +8,7 @@
 
 - Based on the super slim [tklx/base][base] (Debian GNU/Linux).
 - Uses [tini][tini] for zombie reaping and signal forwarding.
+- Configured with UTF-8 locale.
 - Includes weechat, weechat-plugins and weechat-scripts.
 - Includes off-the-record support (privacy).
 - Includes [inwee][inwee] and useful snippets (convenience).
@@ -20,19 +21,34 @@
 docker pull tklx/weechat
 
 # non-persistent
-docker run --rm -it tklx/weechat
+docker run --rm -it -e TERM tklx/weechat
+
+# non-persistent, applying all snippets
+docker run --rm -it -e TERM tklx/weechat -r "/exec snippets/.inwee-all"
 
 # persistent settings, configuration, chat logs, etc.
 mkdir -p ~/.weechat
-docker run --rm -it -v ~/.weechat:/home/user/.weechat tklx/weechat
+docker run --rm -it -e TERM -v ~/.weechat:/home/user/.weechat tklx/weechat
+
+# weechat options
+docker run --rm -it tklx/weechat --help
+
+# interactive root terminal
+docker run --rm -it -u root tklx/weechat /bin/bash
 ```
 
 ### Configuration
 
 ```
-# configure freenode ssl
 /exec inwee snippets/freenode
+/exec inwee snippets/otr
+/exec inwee snippets/colors
+/exec inwee snippets/unicode
+```
 
+### Chatting on freenode
+
+```
 # set your identity
 /set irc.server.freenode.nicks your-nick
 /set irc.server.freenode.username "your-username"
@@ -43,23 +59,10 @@ docker run --rm -it -v ~/.weechat:/home/user/.weechat tklx/weechat
 /join #channel-name
 ```
 
-### Tips
-
-```console
-# weechat options
-docker run --rm -it tklx/weechat --help
-
-# interactive root terminal
-docker run --rm -it -u root tklx/weechat /bin/bash
-```
-
 ### Using Off-The-Record
 
 ```
-# load plugin and add [otr] to default status line
-/exec inwee snippets/otr
-
-# start a private conversion without encryption
+# start a private conversion (without encryption)
 /query <nick>
 
 # in the private chat buffer, start the encrypted session
@@ -80,7 +83,7 @@ Security notice:
 ```
 # configure the relay and password
 /relay add weechat 9001
-/set relay.network.password secretrelaypassword
+/set relay.network.password <secretrelaypassword>
 
 # get the container's IP address
 $ docker ps
