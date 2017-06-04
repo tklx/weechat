@@ -1,0 +1,11 @@
+/set weechat.look.prefix_same_nick "·"
+/set weechat.look.prefix_error "⚠"
+/set weechat.look.prefix_network "ℹ "
+/set weechat.look.bar_more_up "▲"
+/set weechat.look.bar_more_down "▼"
+/set weechat.look.bar_more_left "◀"
+/set weechat.look.bar_more_right "▶"
+/set weechat.look.prefix_suffix "│"
+/set weechat.look.read_marker_string "─"
+/set weechat.look.item_buffer_filter "•"
+
