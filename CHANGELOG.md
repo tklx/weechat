@@ -1,3 +1,18 @@
+## 0.2.0
+
+Off-the-record, UTF-8, inwee, convenience snippets
+
+#### New features
+
+- Support for off-the-record encrypted chats.
+- Includes UTF-8 support for an improved weechat interface with unicode symbols.
+- Conveniently send text/commands to weechat via [inwee](https://github.com/susam/inwee).
+- Added convenience snippets (freenode, otr, colors, unicode).
+
+#### Other changes
+
+- Improved README documentation.
+
 ## 0.1.1
 
 Expose 9001 for relay support
