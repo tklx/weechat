@@ -1,0 +1,3 @@
+/server add freenode chat.freenode.net
+/set irc.server.freenode.addresses "chat.freenode.net/7000"
+/set irc.server.freenode.ssl on

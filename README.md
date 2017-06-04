@@ -9,7 +9,8 @@
 - Based on the super slim [tklx/base][base] (Debian GNU/Linux).
 - Uses [tini][tini] for zombie reaping and signal forwarding.
 - Includes weechat, weechat-plugins and weechat-scripts.
-- Includes off-the-record support.
+- Includes off-the-record support (privacy).
+- Includes [inwee][inwee] and useful snippets (convenience).
 - Includes ``USER user`` to restrict the privileges of weechat.
 - Includes ``EXPOSE 9001`` for optional relay configuration.
 
@@ -30,9 +31,7 @@ docker run --rm -it -v ~/.weechat:/home/user/.weechat tklx/weechat
 
 ```
 # configure freenode ssl
-/server add freenode chat.freenode.net
-/set irc.server.freenode.addresses "chat.freenode.net/7000"
-/set irc.server.freenode.ssl on
+/exec inwee snippets/freenode
 
 # set your identity
 /set irc.server.freenode.nicks your-nick
@@ -57,9 +56,8 @@ docker run --rm -it -u root tklx/weechat /bin/bash
 ### Using Off-The-Record
 
 ```
-# load plugin and add [otr] to the status line
-/python load /usr/share/weechat/python/otr.py
-/set weechat.bar.status.items "[time],[buffer_last_number],[buffer_plugin],buffer_number+:+buffer_name+(buffer_modes)+{buffer_nicklist_count}+buffer_zoom+buffer_filter,scroll,[lag],[hotlist],completion"
+# load plugin and add [otr] to default status line
+/exec inwee snippets/otr
 
 # start a private conversion without encryption
 /query <nick>
@@ -107,6 +105,7 @@ tracking of bugs, issues and feature requests.
 [weechat]: https://weechat.org
 [base]: https://github.com/tklx/base
 [tini]: https://github.com/krallin/tini
+[inwee]: https://github.com/susam/inwee
 [relay-exec]: https://github.com/weechat/weechat/issues/928
 [tracker]: https://github.com/tklx/tracker/issues
 

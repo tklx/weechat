@@ -17,9 +17,17 @@ RUN set -x \
     && apt-get -y install python-potr weechat-scripts \
     && apt-clean --aggressive
 
+ENV INWEE_VERSION=0.2.0
+ENV INWEE_HASH=ad4566d4354454f7d2b7db607b91a66aaf5c96a48a22c534159a515d03fd4e0d
+ADD https://github.com/susam/inwee/releases/download/${INWEE_VERSION}/inwee /usr/local/bin/inwee
+RUN set -x \
+    && echo -n "${INWEE_HASH}  /usr/local/bin/inwee" | sha256sum --strict --check - \
+    && chmod 655 /usr/local/bin/inwee
+
 RUN adduser --disabled-login --gecos '' user
 USER user
 WORKDIR /home/user
+COPY snippets /home/user/snippets
 
 EXPOSE 9001
 COPY entrypoint /entrypoint
