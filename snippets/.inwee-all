@@ -1,0 +1,4 @@
+#!/bin/bash -e
+SNIPPETS_PATH=$(dirname $(realpath $0))
+for f in $(ls $SNIPPETS_PATH); do inwee $SNIPPETS_PATH/$f; done
+
