@@ -12,6 +12,11 @@ RUN set -x \
     && apt-get -y install ncurses-base weechat weechat-plugins \
     && apt-clean --aggressive
 
+RUN set -x \
+    && apt-get update \
+    && apt-get -y install python-potr weechat-scripts \
+    && apt-clean --aggressive
+
 RUN adduser --disabled-login --gecos '' user
 USER user
 WORKDIR /home/user

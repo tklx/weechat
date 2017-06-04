@@ -8,7 +8,8 @@
 
 - Based on the super slim [tklx/base][base] (Debian GNU/Linux).
 - Uses [tini][tini] for zombie reaping and signal forwarding.
-- Includes weechat and weechat-plugins.
+- Includes weechat, weechat-plugins and weechat-scripts.
+- Includes off-the-record support.
 - Includes ``USER user`` to restrict the privileges of weechat.
 - Includes ``EXPOSE 9001`` for optional relay configuration.
 
@@ -51,6 +52,23 @@ docker run --rm -it tklx/weechat --help
 
 # interactive root terminal
 docker run --rm -it -u root tklx/weechat /bin/bash
+```
+
+### Using Off-The-Record
+
+```
+# load plugin and add [otr] to the status line
+/python load /usr/share/weechat/python/otr.py
+/set weechat.bar.status.items "[time],[buffer_last_number],[buffer_plugin],buffer_number+:+buffer_name+(buffer_modes)+{buffer_nicklist_count}+buffer_zoom+buffer_filter,scroll,[lag],[hotlist],completion"
+
+# start a private conversion without encryption
+/query <nick>
+
+# in the private chat buffer, start the encrypted session
+/otr start
+
+# for more information
+/help otr
 ```
 
 ### Relay configuration / glowing bear (web UI)
