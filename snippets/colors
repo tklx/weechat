@@ -1,0 +1,3 @@
+/set weechat.bar.title.color_bg black
+/set weechat.bar.status.color_bg black
+/set weechat.color.chat_nick_colors 1,2,3,4,5,6
