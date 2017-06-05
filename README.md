@@ -50,9 +50,22 @@ docker run --rm -it -u root tklx/weechat /bin/bash
 
 ```
 # set your identity
-/set irc.server.freenode.nicks your-nick
-/set irc.server.freenode.username "your-username"
-/set irc.server.freenode.realname "Your Real Name"
+/set irc.server.freenode.nicks <nick>
+/set irc.server.freenode.username <username>
+/set irc.server.freenode.realname "Your Name"
+
+# optional: if you would like to register your nick/username
+/connect freenode
+/msg NickServ REGISTER <password> <email>
+/msg NickServ VERIFY REGISTER <username> <verificationcode-from-email>
+/disconnect
+
+# optional: setup authentication if you have a registered nick/username
+/set irc.server.freenode.sasl_username <username>
+/set irc.server.freenode.sasl_password <password>
+
+# optional: autoconnect to freenode
+/set irc.server.freenode.autoconnect on
 
 # connect to freenode and join a channel
 /connect freenode
