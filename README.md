@@ -85,6 +85,25 @@ docker run --rm -it -u root tklx/weechat /bin/bash
 /help otr
 ```
 
+### Send commands and messages from host to weechat in container
+
+```console
+# set an environment variable for convenience
+# in this example the container was started with "--name weechat"
+inwee="docker exec -i -u user weechat inwee -d /dev/stdin"
+
+# send a command
+echo "/help" | $inwee
+
+# send commands from a file
+# e.g., you're using a non-persistent container and want to authenticate
+cat freenode.creds | $inwee
+
+# send a message to a specific buffer
+# e.g., you need to share your audio device details to get help
+lspci | grep -i audio | $inwee -b 'irc.freenode.#audiohelp'
+```
+
 ### Relay configuration / glowing bear (web UI)
 
 Security notice:
